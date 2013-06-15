@@ -1,6 +1,8 @@
-var Base = require('../core/base');
+var YUI = require('yui').YUI,
+	Y = YUI({ useSync: true }).use('model');
 
-var Card = Base.create('Card', Base, {
+
+var Card = Y.Base.create('Card', Y.Model, [], {
 
 },{
 	ATTRS: {
@@ -17,7 +19,7 @@ var Card = Base.create('Card', Base, {
 						Card.ACTION_HALF_TURN].indexOf(v) > -1;
 			}
 		},
-		property: {
+		priority: {
 			value: 0,
 			setter: function(v)
 			{

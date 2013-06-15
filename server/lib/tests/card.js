@@ -45,36 +45,36 @@ module.exports = {
 			test.done();
 		},
 
-		testProperty: function(test)
+		testPriority: function(test)
 		{
-			this.card.set('property', 1);
+			this.card.set('priority', 1);
 			test.equals(
 				1,
-				this.card.get('property')
+				this.card.get('priority')
 			);
 
-			this.card.set('property', 999);
+			this.card.set('priority', 999);
 			test.equals(
 				999,
-				this.card.get('property')
+				this.card.get('priority')
 			);
 
-			this.card.set('property', 500);
+			this.card.set('priority', 500);
 			test.equals(
 				500,
-				this.card.get('property')
+				this.card.get('priority')
 			);
 
-			this.card.set('property', 1000);
+			this.card.set('priority', 1000);
 			test.equals(
 				999,
-				this.card.get('property')
+				this.card.get('priority')
 			);
 
-			this.card.set('property', -30);
+			this.card.set('priority', -30);
 			test.equals(
 				1,
-				this.card.get('property')
+				this.card.get('priority')
 			);
 
 			test.done();
