@@ -1,29 +1,44 @@
-var util = require("util"),
-	Base = require('../base');
+var Base = require('../core/base');
 
-var Card = function(config)
-{
-	Base.apply(this, arguments);
-};
+var Card = Base.create('Card', Base, {
 
-util.inherits(Card, Base);
-
-Card.prototype.ATTRS = {
-	action: {
-		value: null,
-		setter: function(v)
-		{
-			return v;
-		}
-	},
-	property: {
-		value: null,
-		setter: function(v)
-		{
-			return v;
+},{
+	ATTRS: {
+		action: {
+			value: null,
+			validator: function(v)
+			{
+				return [Card.ACTION_MOVE_3,
+						Card.ACTION_MOVE_2,
+						Card.ACTION_MOVE_1,
+						Card.ACTION_BACKUP,
+						Card.ACTION_TURN_LEFT,
+						Card.ACTION_TURN_RIGHT,
+						Card.ACTION_HALF_TURN].indexOf(v) > -1;
+			}
+		},
+		property: {
+			value: 0,
+			setter: function(v)
+			{
+				return Math.min(
+					Math.max(
+						+v,
+						1
+					),
+					999
+				);
+			}
 		}
 	}
-};
+});
 
-console.log(new Card().get('action'));
+Card.ACTION_MOVE_3 = 'mv3';
+Card.ACTION_MOVE_2 = 'mv2';
+Card.ACTION_MOVE_1 = 'mv1';
+Card.ACTION_BACKUP = 'bu';
+Card.ACTION_TURN_LEFT = 'tl';
+Card.ACTION_TURN_RIGHT = 'tr';
+Card.ACTION_HALF_TURN = 'ht';
+
 module.exports = Card;
