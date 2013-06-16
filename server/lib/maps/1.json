@@ -1,6 +1,4 @@
 [
-	[[10],[10],[10],[10]],
-	[[10],[10,20],[10],[10]],
-	[[10],[10, 30],[10],[10]],
-	[[10],[10],[10],[10, 21, 30]]
+	[["spin-l", "travelator-s"], ["travelator-w"], ["travelator-w"], ["travelator-w"], ["travelator-w", "spin-r"], ["travelator-e", "spin-l"], ["travelator-e"], ["travelator-e"], ["travelator-e"], ["travelator-s", "spin-r"]],
+	[["travelator-s"], ["wall-e"], ["wall-w"], ["spin-l"], [], ["wall-e"], ["wall-w", "wall-s"], [], [], ["travelator-e"]]
 ]

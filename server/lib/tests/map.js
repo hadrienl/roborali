@@ -26,16 +26,16 @@ module.exports = {
 				function()
 				{
 					test.equals(
-						4,
-						this.map.get('matrix').length
+						2,
+						this.map.get('width')
 					);
 					test.equals(
-						4,
-						this.map.get('matrix')[0].length
+						10,
+						this.map.get('height')
 					);
 
 					test.equals(
-						10,
+						'spin-l',
 						this.map.get('matrix')[0][0][0]
 					);
 

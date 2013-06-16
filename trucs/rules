@@ -1,0 +1,44 @@
+Cartes
+	- 7 valeurs avec chacune une probabilité :
+		- avance 3 ()
+		- avance 2 ()
+		- avance 1 ()
+		- recule ()
+		- tourne droite ()
+		- tourne gauche ()
+		- demi tour ()
+	- une priorité : nombre aléatoire de 0 à 1000
+
+Debut du jeu
+	- charger plateau
+	- placer checkpoints
+	- tirer une carte par joueur
+	- placer les joueurs sur leur position de départ
+
+	Boucle 1
+		- distribuer n cartes à chaque joueur en prenant en compte le nombre de dégât
+		- lancer timer de 30 secondes
+		- permettre aux joueurs de placer leurs cartes
+		- fin du timer
+		- vérifier que les cartes choisies correspondent à leur main
+		- rajouter des cartes aléatoires aux deck non remplis depuis leur main
+
+		Boucle 2 (5 tours)
+			- déplacer les joueurs en fonction de leur carte et sa priorité
+			- déplacer les joueurs selon le terrain (tapis, roues)
+			- infliger les dégats (joueurs, terrain)
+			- si un joueur atteint un checkpoint
+				- placer un backup
+				- si le checkpoint est le dernier :
+					- sortir le joueur gagnant du jeu
+			- timer de 1 minute + bouton pour couper le timer et accélérer le jeu :
+				- si pas 5° tour :
+					- Une fois que chaque joueur a atteint son timer ou a cliqué, on passe au tour suivant
+				- si 5° tour :
+					- bouton pour demander un shutdown
+					- sortie de boucle 2
+
+	- La boucle et donc le jeu se termine quand tous les joueurs ont atteint tous les checkpoints ou qu'ils ont abandonné.
+
+Links :
+	Maps : http://tartarus.org/gareth/roborally/boards/all

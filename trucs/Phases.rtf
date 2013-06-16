@@ -1,0 +1,58 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1187\cocoasubrtf390
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww16940\viewh11100\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+
+\f0\fs24 \cf0 Phase :\
+\
+
+\b START
+\b0 \
+- On prends la carte dont la priorit\'e9 est la plus haute\
+- On regarde le premier mouvement de la carte pour le joueur donn\'e9.\
+	- pour le cartes avance 2 et avance 3, on fait uniquement le premier pas puis on boucle jusqu'au second ou troisi\'e8me pas\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+
+\b \cf0 beforeMoves
+\b0 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+\cf0 - On appelle la m\'e9thode beforeMoves de la case o\'f9 se trouve le joueur en lui indiquant l'action \'e0 produire ainsi que sa direction. Ainsi, si le joueur se trouve sur une case poss\'e9dant un mur au sud et un mur au nord, on indiquera \'e0 la case, que le joueur veut faire un pas vers l'ouest. La case pourra ne rien faire le cas \'e9ch\'e9ant, ou appeler la m\'e9thode player.cancelMove() s'il avait voulu aller vers le nord ou le sud.\
+
+\b onEachStep\
+
+\b0 - Si le d\'e9placement n'a pas \'e9t\'e9 annul\'e9 par cancelMove(), le joueur change de case. On appelle alors la m\'e9thode 
+\b onEachStep
+\b0  de la case. Cette m\'e9thode provoquera un effet sur le passage du joueur : mort si la case est un trou (player.die()). Si la case est occup\'e9e par un autre joueur, il faudra alors effectuer un 
+\b move 1
+\b0  sur ce joueur, qui provoquera cette boucle depuis le d\'e9part. Cette \'e9tape sera en attente d'un callback envoy\'e9 \'e0 la fin de cette boucle suite auquel il devra soit continuer son d\'e9placement, soit faire revenir le joueur \'e0 sa case pr\'e9c\'e9dente (dans le cas o\'f9 le joueur pouss\'e9 ne peut pas bouger).\
+Cette m\'e9thode est appell\'e9e \'e0 chaque pas du joueur. Donc une fois pour toutes les cartes, mais deux ou trois fois pour les cartes 
+\b move 2
+\b0  et 
+\b move 3
+\b0 .\
+
+\b \
+Joueur suivant\
+
+\b0 On d\'e9place maintenant le joueur suivant de la m\'eame fa\'e7on.\
+\
+
+\b Fin des d\'e9placements
+\b0 \
+Tous les joueurs ont fini leurs d\'e9placement, on peut alors appeller pour chaque case occup\'e9 la m\'e9thode 
+\b afterMoves
+\b0 . Ici, on d\'e9placera les joueurs sur les tapis, provoquant alors une boucle de d\'e9placement (
+\b beforeMoves
+\b0  et 
+\b onEachStep
+\b0 ), on tournera un joueur s'il est sur une case de rotation, on placera une sauvegarde si il est sur une case de r\'e9paration ou un checkpoint, etc.\
+\
+Fin de la phase\
+Dans la m\'e9thode 
+\b endOfPhase
+\b0 , nous \'e9x\'e9cuterons les action \'e0 faire \'e0 la toute fin des d\'e9placement : on enl\'e8vera un point de vie aux joueurs sur des lasers, on enl\'e8vera un point de vie aux joueurs touch\'e9s par d'autres, etc.\
+\
+Une phase par carte, soit 5 phases. \'c0 la fin de des 5 phases, on appelle une ultime m\'e9thode 
+\b endOfTurn
+\b0 . On ajoutera un point de vie aux joueurs on sauvegardera la position sur des cases r\'e9paration, on tirera une carte bonus sur une case double r\'e9paration.}
